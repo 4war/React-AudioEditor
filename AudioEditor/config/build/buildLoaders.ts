@@ -1,10 +1,25 @@
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import path from "path";
-import webpack from "webpack";
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import webpack from 'webpack';
+import { BuildOptions } from './types/config';
 
-export function buildLoaders() : webpack.RuleSetRule[] {
-    const txtLoader: webpack.RuleSetRule = {
-        test: /\.txt$/, use: 'raw-loader' 
+export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
+    const cssLoader = {
+        test: /\.s[ac]ss$/i,
+        use: [
+            options.isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+            {
+                loader: 'css-loader',
+                options: {
+                    modules: {
+                        auto: (resPath: string) => resPath.includes('.module.'),
+                        localIdentName: options.isDev
+                            ? '[path][name]__[local]--[hash:base64:4]'
+                            : '[hash:base64:8]',
+                    },
+                },
+            },
+            'sass-loader',
+        ],
     };
 
     const tsLodaer: webpack.RuleSetRule = {
@@ -13,8 +28,5 @@ export function buildLoaders() : webpack.RuleSetRule[] {
         exclude: /node_modules/,
     };
 
-    return [
-        txtLoader,
-        tsLodaer
-    ];
+    return [tsLodaer, cssLoader];
 }
