@@ -9,10 +9,10 @@
         "moduleResolution": "node",
                 
         //Для относительных путей импортов
-        // "baseUrl": ".",
-        // "paths": {
-        //   "*": ["./src/*"]
-        // },
+        "baseUrl": ".",
+        "paths": {
+          "*": ["./src/*"]
+        },
 
         //Для удобного синтаксиса import вместо require (commonJs)
         "esModuleInterop": true,
