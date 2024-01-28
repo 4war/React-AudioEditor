@@ -19,7 +19,6 @@ const LangSwitcher = ({ className }: LangSwitcherProps) => {
         <div className={classNames(cls.LanguageSwitcher, {}, [className])}>
             <Button theme={ThemeButton.CLEAR} onClick={toggle}>
                 {t('language')}
-                {t('asd')}
             </Button>
         </div>
     );
