@@ -2,11 +2,11 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import webpack from 'webpack';
 import { BuildOptions } from './types/config';
 
-export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
+export function buildLoaders (options: BuildOptions): webpack.RuleSetRule[] {
     const svgLoader = {
         test: /\.svg$/i,
         issuer: /\.[jt]sx?$/,
-        use: ['@svgr/webpack'],
+        use: ['@svgr/webpack']
     };
 
     const babelLoader = {
@@ -17,20 +17,22 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
             options: {
                 presets: ['@babel/preset-env'],
                 plugins: [
-                    'i18next-extract',
-                    { locales: ['ru', 'en'], keyAsDefaultValue: true },
-                ],
-            },
-        },
+                    [
+                        'i18next-extract',
+                        { locales: ['ru', 'en'], keyAsDefaultValue: true }
+                    ]
+                ]
+            }
+        }
     };
 
     const fileLoader = {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
             {
-                loader: 'file-loader',
-            },
-        ],
+                loader: 'file-loader'
+            }
+        ]
     };
 
     const cssLoader = {
@@ -44,18 +46,18 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
                         auto: (resPath: string) => resPath.includes('.module.'),
                         localIdentName: options.isDev
                             ? '[path][name]__[local]--[hash:base64:4]'
-                            : '[hash:base64:8]',
-                    },
-                },
+                            : '[hash:base64:8]'
+                    }
+                }
             },
-            'sass-loader',
-        ],
+            'sass-loader'
+        ]
     };
 
     const tsLodaer: webpack.RuleSetRule = {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        exclude: /node_modules/,
+        exclude: /node_modules/
     };
 
     return [fileLoader, babelLoader, svgLoader, tsLodaer, cssLoader];
