@@ -5,7 +5,8 @@ module.exports = {
     },
     "extends": [
         "standard-with-typescript",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:i18next/recommended"
     ],
     "overrides": [
         {
@@ -28,7 +29,9 @@ module.exports = {
         "tsconfigRootDir": __dirname,
     },
     "plugins": [
-        "react"
+        "react",
+        '@typescript-eslint',
+        'i18next'
     ],
     "rules": {
         "@typescript-eslint/indent": "off",
@@ -41,12 +44,18 @@ module.exports = {
         "@typescript-eslint/consistent-type-imports": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
         "react/react-in-jsx-scope": "off",
-        "@typescript-eslint/member-delimiter-style": "error",
+        "@typescript-eslint/member-delimiter-style": "off",
         "semi": "off",
         "@typescript-eslint/semi": "off",
         "import/no-unresolved": 'off',
         "import/prefer-default-export": 'off',
-        "no-unused-vars": 'warn'
+        "no-unused-vars": 'warn',
+        "i18next/no-literal-string": ['error', { markupOnly: true }]
+    },
+    "settings": {
+        "react": {
+          "version": "detect"
+        }
     },
     globals: {
         '__IS_DEV__': true
