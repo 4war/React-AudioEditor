@@ -4,18 +4,19 @@ import { initReactI18next } from 'react-i18next';
 import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-void i18n.use(Backend)
+void i18n
+    .use(Backend)
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
         fallbackLng: 'ru',
         debug: __IS_DEV__,
-
+        load: 'languageOnly',
         interpolation: {
             escapeValue: false
         },
         backend: {
-            loadPath: 'locales/ru/{{ns}}.json'
+            loadPath: 'locales/{{lng}}/{{ns}}.json'
         }
     });
 

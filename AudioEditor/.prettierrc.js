@@ -2,7 +2,7 @@
 
 /** @type {import("prettier").Config} */
 const config = {
-  trailingComma: "es5",
+  trailingComma: "none",
   tabWidth: 4,
   semi: true,
   singleQuote: true,
