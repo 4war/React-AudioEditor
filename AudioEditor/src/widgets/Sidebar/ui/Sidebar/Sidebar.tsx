@@ -23,12 +23,13 @@ const Sidebar = ({ className }: SidebarProps) => {
 
     return (
         <div
+            data-testid="sidebar"
             className={classNames(cls.sidebar, { [cls.collapsed]: collapsed }, [
                 className
             ])}
         >
             <div className={cls.toggleIcon}>
-                <Button theme={ThemeButton.CLEAR} onClick={onToggle}>
+                <Button data-testid='sidebar-toggle' theme={ThemeButton.CLEAR} onClick={onToggle}>
                     <FontAwesomeIcon icon="bars" />
                 </Button>
             </div>

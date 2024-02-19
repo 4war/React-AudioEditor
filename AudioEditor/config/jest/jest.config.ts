@@ -4,6 +4,7 @@
  */
 
 import type { Config } from 'jest';
+import path from 'path';
 
 const config: Config = {
     // All imported modules in your tests should be mocked automatically
@@ -36,12 +37,20 @@ const config: Config = {
     ],
     // The root directory that Jest should scan for tests and modules within
     rootDir: '../../',
-
+    // Чтобы абсолютные пути тоже работали
+    modulePaths: ['<rootDir>/src'],
     // The glob patterns Jest uses to detect test files
     testMatch: ['<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'],
-
+    // Чтобы тесты работали с dom
+    setupFilesAfterEnv: ['<rootDir>/config/jest/jest-setup.ts'],
     // The test environment that will be used for testing
-    testEnvironment: 'jsdom'
+    testEnvironment: 'jsdom',
+    moduleNameMapper: {
+        // '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+        // '<rootDir>/__mocks__/fileMock.js',
+        '\\.s?css$': 'identity-obj-proxy',
+        '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx')
+    }
     // Indicates whether the coverage information should be collected while executing the test
     // collectCoverage: false,
 
