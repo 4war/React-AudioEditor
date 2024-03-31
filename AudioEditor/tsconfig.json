@@ -7,7 +7,7 @@
         "jsx": "react-jsx",
         "allowJs": true,
         "moduleResolution": "node",
-                
+
         //Для относительных путей импортов
         "baseUrl": ".",
         "paths": {
@@ -25,4 +25,4 @@
           "module": "CommonJS"
         }
     },
-  }
+}
