@@ -72,7 +72,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "babel": "^6.23.0",
-    "i18next": "^21.8.14",
+    "i18next": "^23.2.3",
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-http-backend": "^2.4.2",
     "react": "^17.0.2",
